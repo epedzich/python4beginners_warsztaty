@@ -5,6 +5,9 @@
 # [1, 2, 3, ..., 100, 6], ..., [1, 2, 3, ..., 100, 5050] ]
 # Wynikową listę przypisz na zmienną result
 
-result = None
+result = [(list(range(1, 101))) for i in range(1, 101)]
+
+for j, x in enumerate(result):
+    x.append(sum(x[:j + 1]))
 
 assert result[-1][-1] == 5050

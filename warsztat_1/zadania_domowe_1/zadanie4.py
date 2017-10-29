@@ -19,7 +19,7 @@
 # Wynik przypisz na zmienną result
 
 
-result = {
+slownik = {
     1: 'Poniedziałek',
     2: 'Wtorek',
     3: 'Środa',
@@ -28,5 +28,10 @@ result = {
     6: 'Sobota',
     7: 'Niedziela'
 }
+result = {}
+for i in slownik:
+    if int(i)%2 != 0:
+        result[slownik[i]] = i
+
 
 assert 'Poniedziałek' in result

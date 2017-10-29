@@ -4,6 +4,18 @@
 # Liczby podzielne jednocześnie przez 3 i 5 zastąp słowem 'trzypięć'.
 # Wynikową listę przypisz zmiennej result.
 
-result = None
+lista = list(range(1000))
+
+result = lista
+
+for i in lista:
+    if i == 0:
+        continue
+    if i % 3 == 0:
+        lista[i] = 'trzy'
+    if i % 5 == 0:
+        lista[i] = 'pięć'
+    if i % 3 == 0 and i % 5 == 0:
+        lista[i] = 'trzypięć'
 
 assert result[15] == 'trzypięć'
