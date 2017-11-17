@@ -30,8 +30,10 @@ slownik = {
 }
 result = {}
 for i in slownik:
-    if int(i)%2 != 0:
+    if i%2:
         result[slownik[i]] = i
+
+print(result)
 
 
 assert 'Poniedziałek' in result
