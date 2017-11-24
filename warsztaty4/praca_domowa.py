@@ -2,21 +2,17 @@ class DateError(Exception):
     def __init__(self):
         pass
 
-
 class InvalidYearError(DateError):
     def __init__(self):
         pass
-
 
 class InvalidMonthError(DateError):
     def __init__(self):
         pass
 
-
 class InvalidDayError(DateError):
     def __init__(self):
         pass
-
 
 class Date:
     def __init__(self, day, month, year):
@@ -160,113 +156,192 @@ def create_sets_of_question(capitals_csv, number_of_sets, number_of_questions_pe
 # else:
 #     print('Bez błędu, a trzeba było :(')
 
+#
+# class Picture():
+#     def __init__(self, red, green, blue, width, height):
+#
+#         self.width = width
+#         self.height = height
+#
+#         self.pixels = [(r, g, b) for r, g, b in zip(red, green, blue)]
+#
+#
+#     def red(self):
+#         return tuple(r for r,g,b in self.pixels)
+#
+#     def green(self):
+#         return tuple(g for r,g,b in self.pixels)
+#
+#     def blue(self):
+#         return tuple(b for r,g,b in self.pixels)
+#
+#     def size(self):
+#         return self.width, self.height
+#
+#     def crop(self, x, y, width, height):
+#         new_picture = []
+#
+#         for i in range(y, min(y + height, self.height)):
+#             for j in range(x, min(x + width, self.width)):
+#                 new_picture.append(self.pixel(j, i))
+#
+#         self.pixels = new_picture
+#
+#
+#     def pixel(self, x, y):
+#         i = self.width * y + x
+#         return self.pixels[i]
+#
+# def test_one_red_pixel():
+#     red = [255]
+#     green = [0]
+#     blue = [0]
+#     width = 1
+#     height = 1
+#     obrazek = Picture(red=red, green=green, blue=blue, width=width, height=height)
+#     assert (1, 1) == obrazek.size()
+#     assert (255, ) == obrazek.red()
+#     assert (0, ) == obrazek.green()
+#     assert (0, ) == obrazek.blue()
+#     assert (255, 0, 0) == obrazek.pixel(0, 0)
+#
+# def test_kwadrat_gradient():
+#     obrazek = Picture(red=range(256), green=range(256), blue=range(256), width=16, height=16)
+#     assert (16, 16) == obrazek.size()
+#     val = 0
+#     for y in range(16):
+#         for x in range(16):
+#             assert (val, val, val) == obrazek.pixel(x, y)
+#             val += 1
+#
+#     # Same picture
+#     obrazek_2 = Picture(red=range(256), green=range(256), blue=range(256), width=16, height=16)
+#     obrazek_2.crop(0, 0, 16, 16) # powinniśmy dostać ten sam obrazek
+#     assert obrazek.red() == obrazek_2.red(), (obrazek.red(),  obrazek_2.red())
+#     assert obrazek.green() == obrazek_2.green()
+#     assert obrazek.blue() == obrazek_2.blue()
+#
+#     # Left upper corner
+#     obrazek_2 = Picture(red=range(256), green=range(256), blue=range(256), width=16, height=16)
+#     obrazek_2.crop(0, 0, 1, 1)
+#     assert (0, ) == obrazek_2.red()
+#     assert (0, ) == obrazek_2.green()
+#     assert (0, ) == obrazek_2.blue()
+#
+#     # right upper corner
+#     obrazek_2 = Picture(red=range(256), green=range(256), blue=range(256), width=16, height=16)
+#     obrazek_2.crop(15, 0, 1, 1)
+#     assert (15, ) == obrazek_2.red()
+#     assert (15, ) == obrazek_2.green()
+#     assert (15, ) == obrazek_2.blue()
+#
+#     # right lower corner
+#     obrazek_2 = Picture(red=range(256), green=range(256), blue=range(256), width=16, height=16)
+#     obrazek_2.crop(15, 15, 1, 1)
+#     assert (255, ) == obrazek_2.red()
+#     assert (255, ) == obrazek_2.green()
+#     assert (255, ) == obrazek_2.blue()
+#
+#     # left lower corner
+#     obrazek_2 = Picture(red=range(256), green=range(256), blue=range(256), width=16, height=16)
+#     obrazek_2.crop(0, 15, 1, 1)
+#     assert (240, ) == obrazek_2.red()
+#     assert (240, ) == obrazek_2.green()
+#     assert (240, ) == obrazek_2.blue()
+#
+#     # 2x3 near lower corner
+#     obrazek_2 = Picture(red=range(256), green=range(256), blue=range(256), width=16, height=16)
+#     obrazek_2.crop(1, 12, 2, 3)
+#     assert (193, 194, 209, 210, 225, 226) == obrazek_2.red(), obrazek_2.red()
+#     assert (193, 194, 209, 210, 225, 226) == obrazek_2.green()
+#     assert (193, 194, 209, 210, 225, 226) == obrazek_2.blue()
+#
+#     # 10x15 wystający → 3x5 lower right corner
+#     obrazek_2 = Picture(red=range(256), green=range(256), blue=range(256), width=16, height=16)
+#     obrazek_2.crop(13, 11, 10, 15)
+#     assert (189, 190, 191, 205, 206, 207, 221, 222, 223, 237, 238, 239, 253, 254, 255) == obrazek_2.red()
+#     assert (189, 190, 191, 205, 206, 207, 221, 222, 223, 237, 238, 239, 253, 254, 255) == obrazek_2.green()
+#     assert (189, 190, 191, 205, 206, 207, 221, 222, 223, 237, 238, 239, 253, 254, 255) == obrazek_2.blue()
+#
+# if __name__ == '__main__':
+#     test_one_red_pixel()
+# test_kwadrat_gradient()
 
-class Picture():
-    def __init__(self, red, green, blue, width, height):
+#
+# def solution(S):
+#     proper_prefixes = []
+#     prefix = ''
+#     for char in S:
+#         prefix = prefix + char
+#         if len(prefix) < len(S):
+#             proper_prefixes.append(prefix)
+#
+#
+#     proper_sufixes = []
+#     sufix = ''
+#
+#     for char in S[::-1]:
+#         sufix = char + sufix
+#         if len(sufix) < len(S):
+#             proper_sufixes.append(sufix)
+#
+#     proper_sufixes = set(proper_sufixes)
+#     proper_prefixes = set(proper_prefixes)
+#
+#     wspolne = proper_prefixes & proper_sufixes
+#     if not wspolne:
+#         return 0
+#     return max(len(wpis) for wpis in wspolne)
+# S = 'codility'
+#
+# print(solution(S))
+#
+# def F(K):
+#     if K == 0:
+#         return 0
+#     else:
+#         return F(K-1) + K
+#
+# def solution(N):
+#
+#     K = 0
+#     fK = 0
+#     while fK <= N:
+#         K +=1
+#         fK = fK + K
+#     else:
+#         return K-1
+# N = 21
+#
+# print(solution(N))
+#
+# def solution (A):
+#
+#     sorted_A = sorted(A)
+#     N = len(A)
+#
+#     for i in range(0, N-1):
+#         for j in range(0, N):
+#             fresh_A = A[:]
+#             fresh_A[i], fresh_A[j] = fresh_A[j], fresh_A[i]
+#             if fresh_A == sorted_A:
+#                 return True
+#     return False
+#
+# print(solution(A))
 
-        self.width = width
-        self.height = height
+# from itertools import permutations
+#
+#
+# N = 123
+# def solution(N):
+#
+#
+#     digits = str(N)
+#
+#     result = set(r for r in permutations(digits, len(digits)) if r[0] != '0' or len(r) == 1)
+#
+#     return len(result)
+#
+# print(solution(N))
 
-        self.pixels = [(r, g, b) for r, g, b in zip(red, green, blue)]
-
-
-    def red(self):
-        return tuple(r for r,g,b in self.pixels)
-
-    def green(self):
-        return tuple(g for r,g,b in self.pixels)
-
-    def blue(self):
-        return tuple(b for r,g,b in self.pixels)
-
-    def size(self):
-        return self.width, self.height
-
-    def crop(self, x, y, width, height):
-        new_picture = []
-
-        for i in range(y, min(y + height, self.height)):
-            for j in range(x, min(x + width, self.width)):
-                new_picture.append(self.pixel(j, i))
-
-        self.pixels = new_picture
-
-
-    def pixel(self, x, y):
-        i = self.width * y + x
-        return self.pixels[i]
-
-def test_one_red_pixel():
-    red = [255]
-    green = [0]
-    blue = [0]
-    width = 1
-    height = 1
-    obrazek = Picture(red=red, green=green, blue=blue, width=width, height=height)
-    assert (1, 1) == obrazek.size()
-    assert (255, ) == obrazek.red()
-    assert (0, ) == obrazek.green()
-    assert (0, ) == obrazek.blue()
-    assert (255, 0, 0) == obrazek.pixel(0, 0)
-
-def test_kwadrat_gradient():
-    obrazek = Picture(red=range(256), green=range(256), blue=range(256), width=16, height=16)
-    assert (16, 16) == obrazek.size()
-    val = 0
-    for y in range(16):
-        for x in range(16):
-            assert (val, val, val) == obrazek.pixel(x, y)
-            val += 1
-
-    # Same picture
-    obrazek_2 = Picture(red=range(256), green=range(256), blue=range(256), width=16, height=16)
-    obrazek_2.crop(0, 0, 16, 16) # powinniśmy dostać ten sam obrazek
-    assert obrazek.red() == obrazek_2.red(), (obrazek.red(),  obrazek_2.red())
-    assert obrazek.green() == obrazek_2.green()
-    assert obrazek.blue() == obrazek_2.blue()
-
-    # Left upper corner
-    obrazek_2 = Picture(red=range(256), green=range(256), blue=range(256), width=16, height=16)
-    obrazek_2.crop(0, 0, 1, 1)
-    assert (0, ) == obrazek_2.red()
-    assert (0, ) == obrazek_2.green()
-    assert (0, ) == obrazek_2.blue()
-
-    # right upper corner
-    obrazek_2 = Picture(red=range(256), green=range(256), blue=range(256), width=16, height=16)
-    obrazek_2.crop(15, 0, 1, 1)
-    assert (15, ) == obrazek_2.red()
-    assert (15, ) == obrazek_2.green()
-    assert (15, ) == obrazek_2.blue()
-
-    # right lower corner
-    obrazek_2 = Picture(red=range(256), green=range(256), blue=range(256), width=16, height=16)
-    obrazek_2.crop(15, 15, 1, 1)
-    assert (255, ) == obrazek_2.red()
-    assert (255, ) == obrazek_2.green()
-    assert (255, ) == obrazek_2.blue()
-
-    # left lower corner
-    obrazek_2 = Picture(red=range(256), green=range(256), blue=range(256), width=16, height=16)
-    obrazek_2.crop(0, 15, 1, 1)
-    assert (240, ) == obrazek_2.red()
-    assert (240, ) == obrazek_2.green()
-    assert (240, ) == obrazek_2.blue()
-
-    # 2x3 near lower corner
-    obrazek_2 = Picture(red=range(256), green=range(256), blue=range(256), width=16, height=16)
-    obrazek_2.crop(1, 12, 2, 3)
-    assert (193, 194, 209, 210, 225, 226) == obrazek_2.red(), obrazek_2.red()
-    assert (193, 194, 209, 210, 225, 226) == obrazek_2.green()
-    assert (193, 194, 209, 210, 225, 226) == obrazek_2.blue()
-
-    # 10x15 wystający → 3x5 lower right corner
-    obrazek_2 = Picture(red=range(256), green=range(256), blue=range(256), width=16, height=16)
-    obrazek_2.crop(13, 11, 10, 15)
-    assert (189, 190, 191, 205, 206, 207, 221, 222, 223, 237, 238, 239, 253, 254, 255) == obrazek_2.red()
-    assert (189, 190, 191, 205, 206, 207, 221, 222, 223, 237, 238, 239, 253, 254, 255) == obrazek_2.green()
-    assert (189, 190, 191, 205, 206, 207, 221, 222, 223, 237, 238, 239, 253, 254, 255) == obrazek_2.blue()
-
-if __name__ == '__main__':
-    test_one_red_pixel()
-test_kwadrat_gradient()
